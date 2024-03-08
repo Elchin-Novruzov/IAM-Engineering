@@ -1,0 +1,65 @@
+{
+  "name": "@author.io/iam",
+  "version": "1.0.0-alpha.6",
+  "description": "A Identification and Authorization Management library.",
+  "main": "src/index.js",
+  "module": "index.js",
+  "browser": "./index.js",
+  "directories": {
+    "lib": "src/lib"
+  },
+  "scripts": {
+    "start": "dev workspace",
+    "test": "npm run test:node && npm run test:deno && npm run test:browser && npm run report:syntax && npm run report:size",
+    "test:node": "dev test -rt node tests/*.js",
+    "test:node:sanity": "dev test -rt node tests/01-sanity.js",
+    "test:browser": "dev test -rt browser tests/*.js",
+    "test:deno": "dev test -rt deno tests/*.js",
+    "manually": "dev test -rt manual tests/*.js",
+    "build": "dev build",
+    "report:syntax": "dev report syntax --pretty",
+    "report:size": "dev report size ./.dist/**/*.js ./.dist/**/*.js.map",
+    "report:compat": "dev report compatibility ./src/**/*.js",
+    "report:preview": "npm pack --dry-run && echo \"==============================\" && echo \"This report shows what will be published to the module registry. Pay attention to the tarball contents and assure no sensitive files will be published.\""
+  },
+  "keywords": [
+    "iam",
+    "acl",
+    "authentication",
+    "authorization",
+    "auth",
+    "authz",
+    "management",
+    "rbac",
+    "oauth",
+    "oauth2",
+    "security",
+    "identification"
+  ],
+  "author": {
+    "name": "Corey Butler",
+    "url": "https://github.com/coreybutler"
+  },
+  "license": "MIT",
+  "type": "module",
+  "devDependencies": {
+    "@author.io/dev": "^1.1.0"
+  },
+  "standard": {
+    "globals": [
+      "globalThis",
+      "window",
+      "global"
+    ]
+  },
+  "dev": {
+    "verbose": true,
+    "replace": {
+      "<#REPLACE_VERSION#>": "package.version"
+    },
+    "alias": {
+      "@author.io/iam": "/app/.dist/iam/index.js",
+      "@author.io/iam-debug": "/app/.dist/iam-debug/index.js.map"
+    }
+  }
+}
